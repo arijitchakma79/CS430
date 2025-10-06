@@ -22,13 +22,13 @@ class Transform:
         self.matrix = S @ self.matrix
 
     def rotate(self, theta_deg):
-    theta = math.radians(theta_deg)
-    R = np.array([
-        [math.cos(theta), -math.sin(theta), 0],
-        [math.sin(theta),  math.cos(theta), 0],
-        [0, 0, 1]
-    ], dtype=float)
-    self.matrix = R @ self.matrix
+        theta = math.radians(theta_deg)
+        R = np.array([
+            [math.cos(theta), -math.sin(theta), 0],
+            [math.sin(theta),  math.cos(theta), 0],
+            [0, 0, 1]
+        ], dtype=float)
+        self.matrix = R @ self.matrix
 
     def apply(self, x, y):
         v = np.array([x, y, 1], dtype=float)

@@ -29,12 +29,11 @@ class CohenSutherland:
     def clip_line(self, x1, y1, x2, y2):
         code1 = self.compute_out_code(x1, y1)
         code2 = self.compute_out_code(x2, y2)
-        inside = False
 
         while True:
             if not (code1 | code2):
-                inside = True
-                break
+                return (x1, y1, x2, y2)
+
             elif code1 & code2:
                 return None
             else:
@@ -59,12 +58,6 @@ class CohenSutherland:
                 else:
                     x2, y2 = x, y
                     code2 = self.compute_out_code(x2, y2)
-
-        if inside:
-            return (x1, y1, x2, y2)
-        else:
-            return None
-
         
 if __name__ == "__main__":
     clipper = CohenSutherland(0, 0, 100, 100)
