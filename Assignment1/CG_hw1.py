@@ -29,7 +29,7 @@ def main():
             sy2 = cy2 - args["b"]
             final_lines.append((sx1, sy1, sx2, sy2))
         else:
-            print(f"Line clipped: ({x1:.2f}, {y1:.2f}) → ({x2:.2f}, {y2:.2f})", file=sys.stderr)
+            print(f"({x1:.2f}, {y1:.2f}), ({x2:.2f}, {y2:.2f}) are outside of the window.", file=sys.stderr)
     
     xsize = args["c"] - args["a"] + 1
     ysize = args["d"] - args["b"] + 1
