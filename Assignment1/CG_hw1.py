@@ -6,14 +6,11 @@ import sys
 
 def main():
     args = parse_args(sys.argv)
-
     input_lines = ParsePS.parse_ps_input(args["f"])
-
     transform = Transform()
     transform.scale(args["s"], args["s"])
     transform.rotate(args["r"])
     transform.translate(args["m"], args["n"])
-
     clipper = CohenSutherland(args["a"], args["b"], args["c"], args["d"])
     final_lines = []
 
