@@ -1,37 +1,49 @@
-import numpy as np
 import math
 
 class Transform:
     def __init__(self):
-        self.matrix = np.identity(3, dtype=float)
+        self.matrix = [
+            [1, 0, 0],
+            [0, 1, 0],
+            [0, 0, 1]
+        ]
+
+    def multiply(self, M):
+        result = [[0]*3 for _ in range(3)]
+        for i in range(3):
+            for j in range(3):
+                for k in range(3):
+                    result[i][j] += M[i][k] * self.matrix[k][j]
+        self.matrix = result
 
     def translate(self, dx, dy):
-        T = np.array([
+        T = [
             [1, 0, dx],
             [0, 1, dy],
             [0, 0, 1]
-        ], dtype=float)
-        self.matrix = T @ self.matrix
+        ]
+        self.multiply(T)
 
     def scale(self, sx, sy):
-        S = np.array([
+        S = [
             [sx, 0, 0],
             [0, sy, 0],
             [0, 0, 1]
-        ], dtype=float)
-        self.matrix = S @ self.matrix
+        ]
+        self.multiply(S)
 
     def rotate(self, theta_deg):
         theta = math.radians(theta_deg)
-        R = np.array([
-            [math.cos(theta), -math.sin(theta), 0],
-            [math.sin(theta),  math.cos(theta), 0],
+        cos_t = math.cos(theta)
+        sin_t = math.sin(theta)
+        R = [
+            [cos_t, -sin_t, 0],
+            [sin_t,  cos_t, 0],
             [0, 0, 1]
-        ], dtype=float)
-        self.matrix = R @ self.matrix
+        ]
+        self.multiply(R)
 
     def apply(self, x, y):
-        v = np.array([x, y, 1], dtype=float)
-        res = self.matrix @ v
-        return res[0], res[1]
-
+        x_new = self.matrix[0][0]*x + self.matrix[0][1]*y + self.matrix[0][2]
+        y_new = self.matrix[1][0]*x + self.matrix[1][1]*y + self.matrix[1][2]
+        return x_new, y_new
