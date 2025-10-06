@@ -8,7 +8,7 @@ def parse_args(argv):
         if token.startswith("-") and len(token) == 2 and token[1] in "fsrmnabcd":
             key = token[1]
             if i + 1 >= len(argv):
-                print(f"Value missing for {token}")
+                print(f"Value missing for {token}", file=sys.stderr)
                 sys.exit(1)
             val = argv[i + 1]
             try:
@@ -19,11 +19,11 @@ def parse_args(argv):
                 elif key in ["r", "m", "n", "a", "b", "c", "d"]:
                     options[key] = int(val)
             except ValueError:
-                print(f"Invalid value for {token}: {val}")
+                print(f"Invalid value for {token}: {val}", file=sys.stderr)
                 sys.exit(1)
             i += 2
         else:
-            print(f"Ignoring unrecognized argument: {token}")
+            print(f"Ignoring unrecognized argument: {token}", file=sys.stderr)
             i += 1
 
     options["f"] = options.get("f", "hw1.ps")
@@ -37,7 +37,7 @@ def parse_args(argv):
     options["d"] = options.get("d", 499)
 
     if options["a"] >= options["c"] or options["b"] >= options["d"]:
-        print("Invalid window bounds: must have a < c and b < d")
+        print("Invalid window bounds: must have a < c and b < d", file=sys.stderr)
         sys.exit(1)
 
     return options
