@@ -21,7 +21,6 @@ def main():
         tx1, ty1 = transform.apply(x1, y1)
         tx2, ty2 = transform.apply(x2, y2)
         clipped = clipper.clip_line(tx1, ty1, tx2, ty2)
-
         if clipped:
             cx1, cy1, cx2, cy2 = clipped
             sx1 = cx1 - args["a"]
@@ -31,10 +30,9 @@ def main():
             final_lines.append((sx1, sy1, sx2, sy2))
         else:
             print(f"Line clipped: ({x1:.2f}, {y1:.2f}) → ({x2:.2f}, {y2:.2f})", file=sys.stderr)
-
+    
     xsize = args["c"] - args["a"] + 1
     ysize = args["d"] - args["b"] + 1
-
     ps_output = ParsePS.parse_ps_output(final_lines, (xsize, ysize))
     print(ps_output)
 

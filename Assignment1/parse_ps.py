@@ -37,7 +37,6 @@ class ParsePS:
         width, height = page_dimensions
 
         output = []
-        output.append("%!PS-Adobe-3.0")
         output.append("%%BeginSetup")
         output.append(f"<< /PageSize [{width} {height}] >> setpagedevice")
         output.append("%%EndSetup")
