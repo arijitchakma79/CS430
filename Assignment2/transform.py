@@ -47,3 +47,6 @@ class Transform:
         x_new = self.matrix[0][0]*x + self.matrix[0][1]*y + self.matrix[0][2]
         y_new = self.matrix[1][0]*x + self.matrix[1][1]*y + self.matrix[1][2]
         return x_new, y_new
+
+    def apply_to_vertices(self, vertices):
+        return [self.apply(x, y) for (x, y) in vertices]

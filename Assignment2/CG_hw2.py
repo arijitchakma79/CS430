@@ -2,7 +2,7 @@ import sys
 from parse_args import parse_args
 from parse_ps import ParsePS
 from transform import Transform
-from algorithm import SutherlandHodgma
+from algorithm import SutherlandHodgman
 
 def main():
     args = parse_args(sys.argv)

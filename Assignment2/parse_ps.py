@@ -31,6 +31,8 @@ class ParsePS:
     def parse_ps_output(vertices, page_dimensions):
         width, height = page_dimensions
         output = []
+        output.append("%!PS-Adobe-2.0")
+        
         output.append("%%BeginSetup")
         output.append(f"<< /PageSize [{width} {height}] >> setpagedevice")
         output.append("%%EndSetup\n")
