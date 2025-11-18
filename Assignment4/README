@@ -1,0 +1,104 @@
+README
+=====
+
+PROGRAM FEATURES
+----------------
+This program implements a 3D graphics pipeline that reads 3D models in SMF (Simple Model Format) 
+and renders them as 2D line drawings in PostScript format. The program performs the following operations:
+
+1. **SMF File Parsing**: Reads 3D model files containing vertices and faces, extracting 
+   vertex coordinates and edge information.
+
+2. **World-to-VRC Transformation**: Transforms 3D vertices from world coordinates to View 
+   Reference Coordinates (VRC) using a view reference point (VRP), view plane normal (VPN), 
+   and view up vector (VUP).
+
+3. **Projection**: Projects 3D vertices to 2D coordinates using either:
+   - Perspective projection (default)
+   - Parallel projection (when -P flag is used)
+   The projection uses a Projection Reference Point (PRP) specified by PRPx, PRPy, and PRPz.
+
+4. **Line Clipping**: Clips lines to a view window using the Cohen-Sutherland line clipping 
+   algorithm, ensuring only visible portions of lines are rendered.
+
+5. **PostScript Generation**: Outputs the clipped 2D lines as PostScript commands in ASCII 
+   format, compatible with PostScript interpreters and viewers.
+
+The program supports extensive command-line configuration for:
+- View reference point (VRP) coordinates (-X, -Y, -Z)
+- View plane normal (VPN) vector (-q, -r, -w)
+- View up vector (VUP) (-Q, -R, -W)
+- Projection reference point (PRP) (-x, -y, -z)
+- View window boundaries (umin, vmin, umax, vmax) (-u, -v, -U, -V)
+- Output viewport dimensions (-j, -k, -o, -p)
+- Parallel projection mode (-P)
+
+
+LANGUAGE AND OS
+---------------
+**Language**: Python 3
+
+**Operating System**: Cross-platform (Windows, Linux, macOS, Unix-like systems)
+
+**Interpreter**: Python 3.x (Python 3.6 or higher recommended)
+
+
+MAIN FILE
+---------
+The main entry point is contained in: **CG_hw4**
+
+The program is modularized into the following files:
+- CG_hw4.py          - Main program entry point
+- parse_args.py      - Command-line argument parsing
+- parse_smf.py       - SMF file parsing
+- transform_vrc.py   - World-to-VRC coordinate transformation
+- projection.py      - 3D to 2D projection (perspective/parallel)
+- cohen_sutherland.py - Line clipping algorithm
+- generate_ps.py     - PostScript output generation
+- vectors.py         - Vector operations (dot product, cross product, normalization)
+
+
+COMPILATION AND EXECUTION
+--------------------------
+This is an interpreted Python program and requires no compilation or linking. Simply run 
+it with the Python interpreter.
+
+**Basic Usage:**
+    CG_hw4 -f <smf_file> [options] > output.ps
+
+**Example:**
+    CG_hw4 -f oct.smf > out.ps
+
+**Command-Line Options:**
+    -f <file>     SMF input file (required)
+    -j <int>      Viewport left coordinate (default: 0)
+    -k <int>      Viewport bottom coordinate (default: 0)
+    -o <int>      Viewport right coordinate (default: 500)
+    -p <int>      Viewport top coordinate (default: 500)
+    -x <float>    PRP x-coordinate (default: 0.0)
+    -y <float>    PRP y-coordinate (default: 0.0)
+    -z <float>    PRP z-coordinate (default: 1.0)
+    -X <float>    VRP x-coordinate (default: 0.0)
+    -Y <float>    VRP y-coordinate (default: 0.0)
+    -Z <float>    VRP z-coordinate (default: 0.0)
+    -q <float>    VPN x-component (default: 0.0)
+    -r <float>    VPN y-component (default: 0.0)
+    -w <float>    VPN z-component (default: -1.0)
+    -Q <float>    VUP x-component (default: 0.0)
+    -R <float>    VUP y-component (default: 1.0)
+    -W <float>    VUP z-component (default: 0.0)
+    -u <float>    View window minimum u (default: -0.7)
+    -v <float>    View window minimum v (default: -0.7)
+    -U <float>    View window maximum u (default: 0.7)
+    -V <float>    View window maximum v (default: 0.7)
+    -P            Enable parallel projection (default: perspective)
+
+**Output:**
+The program writes PostScript commands to standard output. Redirect output to a .ps file 
+to save the result. The output is in ASCII encoding and can be viewed with any PostScript 
+viewer or converted to PDF using tools like Ghostscript.
+
+**Dependencies:**
+No external libraries are required. The program uses only Python standard library modules 
+(sys, math).
+
