@@ -1,3 +1,5 @@
+from z_buffer import z_buffer_update
+
 def scanline_fill_triangle(tri, framebuffer, zbuffer, base_color, F, B):
     (x0, y0, z0), (x1, y1, z1), (x2, y2, z2) = tri
     h = len(framebuffer)
@@ -70,13 +72,7 @@ def scanline_fill_triangle(tri, framebuffer, zbuffer, base_color, F, B):
 
             for x in range(x_start, x_end):
                 if 0 <= x < w:
-                    if B <= z <= F and z < zbuffer[y][x]:
-                        t = (F - z) / (F - B)
-                        r = int(t * base_color[0])
-                        g = int(t * base_color[1])
-                        b = int(t * base_color[2])
-                        framebuffer[y][x] = (r, g, b)
-                        zbuffer[y][x] = z
+                    z_buffer_update(x, y, z, zbuffer, framebuffer, base_color, F, B)
                 z += dzdx
 
         for e in AET:

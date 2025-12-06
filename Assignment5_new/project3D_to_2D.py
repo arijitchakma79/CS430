@@ -1,6 +1,5 @@
 import numpy as np
 
-
 class Project3D_to_2D:
     def __init__(self, cfg):
         self.VRP = np.array([cfg["X"], cfg["Y"], cfg["Z"]], float)
