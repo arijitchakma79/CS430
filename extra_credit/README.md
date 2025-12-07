@@ -1,4 +1,4 @@
-# CS430 Extra Credit - PostScript Graphics Pipeline
+# CS430 Extra Credit
 
 ## Program Features
 
@@ -25,27 +25,35 @@ This program implements a complete 2D graphics pipeline with the following featu
 
 - **Programming Language**: Python 3.x
 - **Operating System**: Cross-platform (Windows, macOS, Linux)
-- **Tested on**: Windows 10
+- **Tested on**: Windows 10 (OS Version: win32 10.0.26200)
 
 ## Compiler/Interpreter
 
 - **Interpreter**: Python 3.x interpreter (CPython)
-- **No compilation required**: Python is an interpreted language
+- **No compilation required**: Python is an interpreted language, executed directly by the Python interpreter
 - **No external dependencies**: Uses only Python standard library modules (sys, math)
+- **Execution method**: Script is run directly using `python` or `python3` command
 
 ## Main File
 
 The main entry point of the program is:
-- **File**: `CG_hwEC.py`
-- **Function**: `main()` (called when script is executed)
+- **File containing main()**: `CG_hwEC.py`
+- **Function**: `main()` (called when script is executed via `if __name__ == "__main__"` block)
 
 ## How to Compile/Link the Program
 
-This is a Python program and does not require compilation or linking. To run the program:
+This is a Python program and does not require compilation or linking. Python is an interpreted language, so the source code is executed directly by the Python interpreter without a separate compilation step. To run the program:
 
 ### Prerequisites
 - Python 3.x must be installed on your system
-- Verify installation: `python --version` or `python3 --version`
+- Verify installation: 
+  ```bash
+  python --version
+  ```
+  or
+  ```bash
+  python3 --version
+  ```
 
 ### Running the Program
 
@@ -144,7 +152,9 @@ All commands must be within `%%%BEGIN` and `%%%END` blocks.
 
 ## Output
 
-The program outputs PostScript code to stdout. The output can be:
-- Displayed in the terminal
-- Redirected to a file for viewing in a PostScript viewer
+The program outputs PostScript code to stdout (standard output). The output can be:
+- Displayed in the terminal/console
+- Redirected to a file for viewing in a PostScript viewer (e.g., Ghostscript)
 - Sent directly to a PostScript printer
+
+The output is a valid PostScript file that can be rendered by any PostScript-compatible viewer or printer.

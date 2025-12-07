@@ -18,7 +18,7 @@ class BezierCurve:
 
     def bezier_to_polyline(self, P0, P1, P2, P3):
         pts = []
-        for i in range(self.N + 1):   # use stored N
+        for i in range(self.N + 1):  
             t = i / float(self.N)
             pts.append(self.de_casteljau(P0, P1, P2, P3, t))
         return pts

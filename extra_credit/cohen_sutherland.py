@@ -1,3 +1,7 @@
+"""
+    FROM HW1
+"""
+
 class CohenSutherland:
     INSIDE = 0  # 0000
     LEFT   = 1  # 0001

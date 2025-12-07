@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+if command -v python3 &> /dev/null; then
+    python3 "$(dirname "$0")/CG_hwEC.py" "$@"
+elif command -v python &> /dev/null; then
+    python "$(dirname "$0")/CG_hwEC.py" "$@"
+else
+    echo "Error: python3 or python not found in PATH" >&2
+    exit 1
+fi
