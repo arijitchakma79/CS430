@@ -2,213 +2,176 @@ import sys
 
 def parse_args():
     args = sys.argv[1:]
-
     cfg = {
-        # PRP (VRC)
-        "x": 0.0,
-        "y": 0.0,
-        "z": 1.0,
-
-        # VRP (World)
-        "X": 0.0,
-        "Y": 0.0,
-        "Z": 0.0,
-
-        # VPN (World)
-        "q": 0.0,
-        "r": 0.0,
-        "w": -1.0,
-
-        # VUP (World)
-        "Q": 0.0,
-        "R": 1.0,
-        "W": 0.0,
-
-        # Window
-        "u": -0.7,
-        "v": -0.7,
-        "U": 0.7,
-        "V": 0.7,
-
-        # Viewport
+        "f": "bound-sprellpsd.smf",
+        "g": None,
+        "i": None,
+        "F": 0.6,
+        "B": -0.6,
         "j": 0,
         "k": 0,
         "o": 500,
         "p": 500,
-
-        # Projection type
-        "P": False,
-
-        # Near/Far clipping planes (VRC)
-        "F": 0.6,    # Front
-        "B": -0.6,   # Back
-
-        
-        "models": [
-            {"file": None, "color": ("Maxval", 0, 0)},     # -f (red)
-            {"file": None, "color": (0, "Maxval", 0)},     # -g (green)
-            {"file": None, "color": (0, 0, "Maxval")}      # -i (blue)
-        ]
+        "x": 0.0,
+        "y": 0.0,
+        "z": 1.0,
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0,
+        "q": 0.0,
+        "r": 0.0,
+        "w": -1.0,
+        "Q": 0.0,
+        "R": 1.0,
+        "W": 0.0,
+        "u": -0.7,
+        "v": -0.7,
+        "U": 0.7,
+        "V": 0.7,
+        "P": False
     }
 
     i = 0
     while i < len(args):
         a = args[i]
 
-        # ---------- MODEL FILES ----------
-        if a == "-f":   # First model: red
-            cfg["models"][0]["file"] = args[i+1]
-            i += 2
-            continue
-
-        if a == "-g":   # Second model: green
-            cfg["models"][1]["file"] = args[i+1]
-            i += 2
-            continue
-
-        if a == "-i":   # Third model: blue
-            cfg["models"][2]["file"] = args[i+1]
-            i += 2
-            continue
-
-        # ---------- NEAR/FAR PLANES ----------
-        if a == "-F":
+        if a == "-F" and i+1 < len(args):
             cfg["F"] = float(args[i+1])
             i += 2
             continue
 
-        if a == "-B":
+        if a == "-B" and i+1 < len(args):
             cfg["B"] = float(args[i+1])
             i += 2
             continue
 
-        # ---------- VIEWPORT ----------
-        if a == "-j":
+        if a == "-f" and i+1 < len(args):
+            cfg["f"] = args[i+1]
+            i += 2
+            continue
+
+        if a == "-g" and i+1 < len(args):
+            cfg["g"] = args[i+1]
+            i += 2
+            continue
+
+        if a == "-i" and i+1 < len(args):
+            cfg["i"] = args[i+1]
+            i += 2
+            continue
+
+        if a == "-j" and i+1 < len(args):
             cfg["j"] = int(args[i+1])
             i += 2
             continue
 
-        if a == "-k":
+        if a == "-k" and i+1 < len(args):
             cfg["k"] = int(args[i+1])
             i += 2
             continue
 
-        if a == "-o":
+        if a == "-o" and i+1 < len(args):
             cfg["o"] = int(args[i+1])
             i += 2
             continue
 
-        if a == "-p":
+        if a == "-p" and i+1 < len(args):
             cfg["p"] = int(args[i+1])
             i += 2
             continue
 
-        # ---------- PRP ----------
-        if a == "-x":
+        if a == "-x" and i+1 < len(args):
             cfg["x"] = float(args[i+1])
             i += 2
             continue
 
-        if a == "-y":
+        if a == "-y" and i+1 < len(args):
             cfg["y"] = float(args[i+1])
             i += 2
             continue
 
-        if a == "-z":
+        if a == "-z" and i+1 < len(args):
             cfg["z"] = float(args[i+1])
             i += 2
             continue
 
-        # ---------- VRP ----------
-        if a == "-X":
+        if a == "-X" and i+1 < len(args):
             cfg["X"] = float(args[i+1])
             i += 2
             continue
 
-        if a == "-Y":
+        if a == "-Y" and i+1 < len(args):
             cfg["Y"] = float(args[i+1])
             i += 2
             continue
 
-        if a == "-Z":
+        if a == "-Z" and i+1 < len(args):
             cfg["Z"] = float(args[i+1])
             i += 2
             continue
 
-        # ---------- VPN ----------
-        if a == "-q":
+        if a == "-q" and i+1 < len(args):
             cfg["q"] = float(args[i+1])
             i += 2
             continue
 
-        if a == "-r":
+        if a == "-r" and i+1 < len(args):
             cfg["r"] = float(args[i+1])
             i += 2
             continue
 
-        if a == "-w":
+        if a == "-w" and i+1 < len(args):
             cfg["w"] = float(args[i+1])
             i += 2
             continue
 
-        # ---------- VUP ----------
-        if a == "-Q":
+        if a == "-Q" and i+1 < len(args):
             cfg["Q"] = float(args[i+1])
             i += 2
             continue
 
-        if a == "-R":
+        if a == "-R" and i+1 < len(args):
             cfg["R"] = float(args[i+1])
             i += 2
             continue
 
-        if a == "-W":
+        if a == "-W" and i+1 < len(args):
             cfg["W"] = float(args[i+1])
             i += 2
             continue
 
-        # ---------- WINDOW ----------
-        if a == "-u":
+        if a == "-u" and i+1 < len(args):
             cfg["u"] = float(args[i+1])
             i += 2
             continue
 
-        if a == "-v":
+        if a == "-v" and i+1 < len(args):
             cfg["v"] = float(args[i+1])
             i += 2
             continue
 
-        if a == "-U":
+        if a == "-U" and i+1 < len(args):
             cfg["U"] = float(args[i+1])
             i += 2
             continue
 
-        if a == "-V":
+        if a == "-V" and i+1 < len(args):
             cfg["V"] = float(args[i+1])
             i += 2
             continue
 
-        # ---------- PARALLEL PROJECTION ----------
         if a == "-P":
             cfg["P"] = True
             i += 1
             continue
 
-        print(f"Warning: ignoring unknown argument {a}")
         i += 1
 
-    # ---------- VALIDATION ----------
     if cfg["B"] >= cfg["F"]:
         print("Error: Back plane (-B) must be less than Front plane (-F).")
         sys.exit(1)
 
-    # At least one model MUST be specified (-f required)
-    if cfg["models"][0]["file"] is None:
-        print("Error: No primary SMF file given with -f")
-        sys.exit(1)
-
     return cfg
-
 
 if __name__ == "__main__":
     print(parse_args())
